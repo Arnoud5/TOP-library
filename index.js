@@ -185,3 +185,16 @@ pushToPage();
 function changeReadStatus(){
   
 }
+
+// open modal
+function openModal(){
+  const modal = document.querySelector('.modal')
+  modal.setAttribute("style", "display:block")
+  console.log(modal)
+}
+
+//close modal
+function closeModal(){
+  const modal = document.querySelector('.modal')
+  modal.setAttribute("style", "display:none")
+}
