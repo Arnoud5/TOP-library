@@ -92,7 +92,9 @@ body {
   justify-content: center;
   align-items: center;
 }
-
+form{
+  z-index: 10;
+}
 .form-head{
   display: flex;
   justify-content: space-between;

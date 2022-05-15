@@ -25,14 +25,14 @@
         </div>
     </div>
 
-    <div class="modal" onclick="closeModal()">
+    <div class="modal" ">
         <div class="modal-content">
             <div class="modal-absolute">
 
                 <form>
                     <div class="form-head">
                         <h3>Add a book</h3>
-                        <span id="close">x</span>
+                        <span id="close" onclick="closeModal()">x</span>
                     </div>
 
                     <label for="title">Title: </label><br>
@@ -51,7 +51,7 @@
                             <label for="read2">No</label>
                         </div>
                     </fieldset>
-                    <button id="submitBook" type="button">Submit</button>
+                    <button id="submitBook" type="button" onclick="closeModal()">Submit</button>
                 </form>
             </div>
         </div>
