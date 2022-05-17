@@ -156,28 +156,46 @@ function pushToPage() {
     // isi p-read dengan finished reading
     // else isi p-read dengan havent read yet
     // masukkan ke DOM HTML
-    const createRead = document.createElement("input");
-    createRead.setAttribute("type", "checkbox");
-    createRead.addEventListener("click", (e) => {
-      if (e.target.checked) {
-        console.log(e.target.checked);
-      } else{
-        console.log(e.target.checked);
-      }
-    });
-    createRead.classList.add("pages");
-    if (myLibrary[i].read === true) {
-      createRead.innerHTML = "finished reading";
-    } else {
-      createRead.innerHTML = "have'nt read yet";
+    const boxRead = document.createElement("input");
+    boxRead.setAttribute("type", "checkbox");
+    boxRead.setAttribute("class", `checkbox-${i}`);
+    book.appendChild(boxRead);
+    if (myLibrary[i].read){
+      document.querySelector(`.checkbox-${i}`).checked = true;
+    } else{
+      document.querySelector(`.checkbox-${i}`).checked = false;
     }
-    book.appendChild(createRead);
+    
+    // membuat tag p yang isinya deskripsi sudah baca atau belum buku tersebut
+    const createReadDesc = document.createElement("p")
+    createReadDesc.setAttribute("class", `desc-${i}`)
+    if(myLibrary[i].read){
+      createReadDesc.innerHTML = "Finished"
+    } else {
+      createReadDesc.innerHTML = "Not Finished"
+    }
+    book.appendChild(createReadDesc)
+
+    // createRead.classList.add("pages");
+    // if (myLibrary[i].read === true) {
+    //   createRead.innerHTML = "finished reading";
+    // } else {
+    //   createRead.innerHTML = "have'nt read yet";
+    // }
+    // book.appendChild(createRead);
   }
 }
 
 pushToPage();
 
-// get book from input
+// make checkbox togle
+function togleCheckbox(e){
+  if (myLibrary[i].read === true){
+    document.querySelector(`.checkbox-${i}`).checked = true
+  } else {
+    document.querySelector(`.checkbox-${i}`).checked = false
+  }
+}
 
 
 // make a function to change read status from true to false and false to true
