@@ -105,14 +105,35 @@ function addBookToLibrary(title, author, pages, read) {
     // isi p-read dengan finished reading
     // else isi p-read dengan havent read yet
     // masukkan ke DOM HTML
-    const createRead = document.createElement("p");
-    createRead.classList.add("pages");
-    if (myLibrary[libLength2].read == "true") {
-      createRead.innerHTML = "finished reading";
+    const boxRead = document.createElement("input");
+    boxRead.setAttribute("type", "checkbox");
+    boxRead.setAttribute("class", `checkbox-${libLength2}`);
+    // add event listener to change text description based on checkbox status
+    boxRead.addEventListener("click", (e) => {
+      if (document.querySelector(`.checkbox-${libLength2}`).checked) {
+        document.querySelector(`.desc-${libLength2}`).innerHTML = "Finished";
+      } else {
+        document.querySelector(`.desc-${libLength2}`).innerHTML =
+          "Not Finished";
+      }
+    });
+    book.appendChild(boxRead);
+    // change checkbox status in the dom based on read status
+    // if it's checked then make checkbox checked
+    if (read) {
+      document.querySelector(`.checkbox-${libLength2}`).checked = true;
     } else {
-      createRead.innerHTML = "have'nt read yet";
+      document.querySelector(`.checkbox-${libLength2}`).checked = false;
     }
-    book.appendChild(createRead);
+
+    const createReadDesc = document.createElement("p");
+    createReadDesc.setAttribute("class", `desc-${libLength2}`);
+    if (myLibrary[libLength2].read) {
+      createReadDesc.innerHTML = "Finished";
+    } else {
+      createReadDesc.innerHTML = "Not Finished";
+    }
+    book.appendChild(createReadDesc);
   }
 }
 
@@ -160,31 +181,29 @@ function pushToPage() {
     boxRead.setAttribute("type", "checkbox");
     boxRead.setAttribute("class", `checkbox-${i}`);
     // add event listener to change text description based on checkbox status
-    boxRead.addEventListener("click", (e)=>{
-      if(document.querySelector(`.checkbox-${i}`).checked){
-        createReadDesc.innerHTML = "Finished"
-      }else{
-        createReadDesc.innerHTML = "Not Finished"
+    boxRead.addEventListener("click", (e) => {
+      if (document.querySelector(`.checkbox-${i}`).checked) {
+        createReadDesc.innerHTML = "Finished";
+      } else {
+        createReadDesc.innerHTML = "Not Finished";
       }
-    })    
-
-
-    
+    });
     book.appendChild(boxRead);
-    if (myLibrary[i].read){
+
+    if (myLibrary[i].read) {
       document.querySelector(`.checkbox-${i}`).checked = true;
-    } else{
+    } else {
       document.querySelector(`.checkbox-${i}`).checked = false;
     }
     // membuat tag p yang isinya deskripsi sudah baca atau belum buku tersebut
-    const createReadDesc = document.createElement("p")
-    createReadDesc.setAttribute("class", `desc-${i}`)
-    if(myLibrary[i].read){
-      createReadDesc.innerHTML = "Finished"
+    const createReadDesc = document.createElement("p");
+    createReadDesc.setAttribute("class", `desc-${i}`);
+    if (myLibrary[i].read) {
+      createReadDesc.innerHTML = "Finished";
     } else {
-      createReadDesc.innerHTML = "Not Finished"
+      createReadDesc.innerHTML = "Not Finished";
     }
-    book.appendChild(createReadDesc)
+    book.appendChild(createReadDesc);
   }
 }
 
@@ -192,19 +211,16 @@ pushToPage();
 
 // make a function to change read status from true to false and false to true
 
-function changeReadStatus(){
-  
-}
+function changeReadStatus() {}
 
 // open modal
-function openModal(){
-  const modal = document.querySelector('.modal')
-  modal.setAttribute("style", "display:block")
-  console.log(modal)
+function openModal() {
+  const modal = document.querySelector(".modal");
+  modal.setAttribute("style", "display:block");
 }
 
 //close modal
-function closeModal(){
-  const modal = document.querySelector('.modal')
-  modal.setAttribute("style", "display:none")
+function closeModal() {
+  const modal = document.querySelector(".modal");
+  modal.setAttribute("style", "display:none");
 }
