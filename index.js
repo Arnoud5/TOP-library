@@ -77,11 +77,24 @@ function addBookToLibrary(title, author, pages, read) {
     createBook.classList.add("book");
     createBook.classList.add(`book-${libLength2}`);
     books.appendChild(createBook);
+
+
+    const book = document.querySelector(`.book-${libLength2}`);
+    // Buat buton untuk menghapus buku
+    const removeBook = document.createElement("span")
+    removeBook.classList.add(`remove-${libLength2}`)
+    removeBook.addEventListener('click', ()=>{
+      const parent = document.querySelector('.books')
+      const child = document.querySelector(`.book-${libLength2}`)
+      parent.removeChild(child)
+    })
+    removeBook.innerHTML = "X"
+    book.appendChild(removeBook)
+    
     // buat dom selector untuk book
     // lalu buat p untuk dng class title
     // isi p-title dengan mylibrary[i].title
     // masukkan ke DOM HTML
-    const book = document.querySelector(`.book-${libLength2}`);
     const createTitle = document.createElement("p");
     createTitle.classList.add("title");
     createTitle.innerHTML = myLibrary[libLength2].title;
@@ -149,11 +162,23 @@ function pushToPage() {
     createBook.classList.add("book");
     createBook.classList.add(`book-${i}`);
     books.appendChild(createBook);
+    const book = document.querySelector(`.book-${i}`);
+
+    // Buat buton untuk menghapus buku
+    const removeBook = document.createElement("span")
+    removeBook.classList.add(`remove-${i}`)
+    removeBook.addEventListener('click', ()=>{
+      const parent = document.querySelector('.books')
+      const child = document.querySelector(`.book-${i}`)
+      parent.removeChild(child)
+    })
+
+    removeBook.innerHTML = "X"
+    book.appendChild(removeBook)
     // buat dom selector untuk book
     // lalu buat p untuk dng class title
     // isi p-title dengan mylibrary[i].title
     // masukkan ke DOM HTML
-    const book = document.querySelector(`.book-${i}`);
     const createTitle = document.createElement("p");
     createTitle.classList.add("title");
     createTitle.innerHTML = myLibrary[i].title;
